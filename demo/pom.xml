@@ -38,6 +38,7 @@
 			<scope>runtime</scope> 
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -49,12 +50,14 @@
             	</exclusion>
         	</exclusions>
 		</dependency>
+
 		<dependency>
       		<groupId>junit</groupId>
       		<artifactId>junit</artifactId>
       		<version>4.12</version>
       		<scope>test</scope>
     	</dependency>
+
     		<!-- 加入Mockito的jar-->
     	<dependency>
       		<groupId>org.mockito</groupId>
@@ -65,9 +68,29 @@
 
 	<build>
 		<plugins>
+			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- OpenRewrite Plugin -->
+			<plugin>
+				<groupId>org.openrewrite.maven</groupId>
+				<artifactId>rewrite-maven-plugin</artifactId>
+				<version>5.25.0</version>
+				<configuration>
+					<activeRecipes>
+						<recipe>org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0</recipe>
+					</activeRecipes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.openrewrite.recipe</groupId>
+						<artifactId>rewrite-spring</artifactId>
+						<version>5.5.0</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
