@@ -36,11 +36,11 @@ public class TestController {
         return "OK";
     }
 
-    @RequestMapping(value = "/param", method = {GET})
+    @GetMapping(value = "/param")
     public AuthResultResponse helloSpringEL(
-            @RequestParam("rule") final String rule,
-            @RequestParam("age") final Integer age,
-            @RequestParam("nationality") final String nationality
+            @RequestParam final String rule,
+            @RequestParam final Integer age,
+            @RequestParam final String nationality
         ) {
         var authContextFact = new AuthContextFact();
         var sceneMap =getAllScene();
